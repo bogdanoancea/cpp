@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1518609915 source:c:\source-files\cpp1\main.cpp
-	<stdexcept>
-	<iostream>
-	"namespace.h"
-
-1518609322 c:\source-files\cpp1\namespace.h
-	<string>
-
