@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1513687109 source:c:\source-files\inversarefisier\main.c
+	<stdio.h>
+	<stdlib.h>
+

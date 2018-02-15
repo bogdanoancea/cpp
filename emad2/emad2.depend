@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1515755242 source:c:\source-files\emad2\main.c
+	<math.h>
+	<stdio.h>
+
