@@ -7,7 +7,6 @@
 //
 
 #include <iostream>
-#include <istream>
 #include <vector>
 #include "point.h"
 using namespace std;
@@ -71,11 +70,11 @@ public:
         delete mouth;
         for(auto p: eyes) delete p;
     }
-    void move(Point to);
+    void move(Point to) const;
     void draw() const;
-    void rotate(int angle);
+    //void rotate(int angle);
     void add_eye(Shape* s) { eyes.push_back(s);}
-    virtual void wink(int i);
+    virtual void wink(int i){};
     
 private:
     vector<Shape*> eyes;
@@ -90,10 +89,11 @@ void Smiley::draw() const {
 }
 
 
-Shape* read_shape(istream is) {
-    kind k;
+Shape* read_shape(istream& is) {
+    kind k = kind::circle;
     int type;
-    double x, y, r, x1,x2,x3,y1,y2,y3;
+    double x, y, r, x1, x2, x3, y1, y2, y3;
+    cout << "shape type: 1- circle; 2- triangle; 3 - smiley" << endl;
     is >> type;
     if(type == 1 ) k = kind::circle;
     if(type == 2 ) k = kind::triangle;
@@ -106,7 +106,7 @@ Shape* read_shape(istream is) {
         }
         case kind::triangle:
         {
-            is >> x1 >> y1>> x2>> y2>> x3>> y3;
+            is >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
             return new Triangle(Point(x1,y1), Point(x2,y2), Point(x3,y3));
         }
         case kind::smiley:
@@ -123,7 +123,11 @@ Shape* read_shape(istream is) {
 
 int main(int argc, const char * argv[]) {
     // insert code here...
+    int x;
+    cin >> x;
     std::cout << "Hello, World!\n";
+    Shape* s = read_shape(std::cin);
+    s->draw();
     return 0;
 }
 
