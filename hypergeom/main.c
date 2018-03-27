@@ -5,7 +5,7 @@
 
 #define SUCCESS 0
 #define NO_CONV 1
-#define OVERFLOW 2
+#define OVERFLOW_ERR 2
 
 double hyp_taylor_a(double a, double b, double z, double tol, int* error) {
 
@@ -38,7 +38,7 @@ double hyp_taylor_b(double a, double b, double z, double tol, int* error) {
     r[1] = (a+1)/2/(b+1);
 
     A[0] = 1 + z * r[0];
-    A[1] = A[0] + z^2*a/b*r[1];
+    A[1] = A[0] + (z^2.0)*a/b*r[1];
 
     for(j =2; j < 500; ++j) {
         r[j] = (a+j)/(j+1)/(b+j);
@@ -75,7 +75,7 @@ double hyp_singlefrac(double a, double b, double z, double tol, int* error) {
         b1[j] = b1[j-1]*(a+j-1)*z;
         c1[j] = c1[j-1]*j*(b+j-1);
 
-        if( (a1[j] == INF) || (b1[j] == INF) || (c1[j] == INF ) ) {
+        if( (a1[j] == INFINITY) || (b1[j] == INFINITY) || (c1[j] == INFINITY ) ) {
             *error = OVERFLOW;
             break;
         }
@@ -97,9 +97,9 @@ int main()
     double tol = 1e-8;
     double i ,j, k;
     FILE* f = fopen("taylor_a.txt", "w");
-    for(i = 0.1; i < 180; i += 0.1)
-        for(j = 0.1; j < 180; j += 0.1)
-            for(k = 0.1; k < 180; k += 0.1) {
+    for(i = 0.1; i < 180; i += 0.5)
+        for(j = 0.1; j < 180; j += 0.5)
+            for(k = 0.1; k < 180; k += 0.5) {
                 double res = hyp_taylor_a(i, j, k, tol, &error);
                 if(error == NO_ERR)
                    fprintf(f,"%g, %g, %g, %g\n", i, j, k, res);
