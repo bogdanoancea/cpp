@@ -102,9 +102,9 @@ int main()
             for(k = 0.1; k < 180; k += 0.1) {
                 double res = hyp_taylor_a(i, j, k, tol, &error);
                 if(error == NO_ERR)
-                   fprintf(f,"%lf, %lf, %lf, %lf\n", i, j, k, res);
+                   fprintf(f,"%g, %g, %g, %g\n", i, j, k, res);
                 else
-                    fprintf(f,"%lf, %lf, %lf, %lf\n", i, j, k, -1);
+                    fprintf(f,"%g, %g, %g, %g\n", i, j, k, -1);
 
             }
     fclose(f);
