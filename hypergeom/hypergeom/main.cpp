@@ -40,7 +40,8 @@ double hyp_taylor_b(double a, double b, double z, double tol, int* error) {
     int j;
     
 //    for(j = 0; j < 500 ; ++j) {
-//        r[j] = A[j] = 0;
+//        //r[j] = A[j] = 0;
+//        //cout << r[j];
 //    }
     
     r[0] = a/b;
