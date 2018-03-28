@@ -17,6 +17,14 @@ using namespace std;
 #define NO_CONVERGENCE 1
 #define OVERFLOW_ERROR 2
 
+
+double hyp_rec_miller(double a, double b, double z, double tol, int* error) {
+    double ak;
+
+}
+
+
+
 double hyp_asymtotic_a(double a, double b, double z, double tol, int* error) {
     double a1 = 1;
     double b1 = 1;
@@ -179,7 +187,8 @@ int main()
                 double res5 = hyp_asymtotic_b(i, j, k, tol, &error5);
                 if(error5 != SUCCESS)
                     res5 = -1;
-                output << i << '\t' << j << '\t' << k << '\t' << res1 << '\t' << error1 << '\t' << res2 << '\t' << error2 << '\t' << res3 << '\t' << error3 << '\t' << res4 << '\t' << error4 << '\t' << res5 << '\t' << error5 << endl;
+                output << setprecision(14);
+                output << setw(4) << i << '\t' <<setw(4)<< j << '\t' <<setw(4)<< k << '\t' <<setw(16)<< res1 << '\t' << error1 << '\t' <<setw(16) << res2 << '\t' << error2 << '\t' <<setw(16)<< res3 << '\t' << error3 << '\t' <<setw(16)<< res4 << '\t' << error4 << '\t' <<setw(16)<< res5 << '\t' << error5 << endl;
             }
     output.close();
     return 0;
