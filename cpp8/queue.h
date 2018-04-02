@@ -21,4 +21,7 @@ void* Back(Queue Q);
 
 void* Deq(Queue Q);
 
+void display(Queue Q);
+
 #endif // QUEUE_H_INCLUDED
+

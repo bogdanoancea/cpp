@@ -1,5 +1,6 @@
 #include "queue.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <assert.h>
 
 struct node{
@@ -60,4 +61,14 @@ void *Deq(Queue Q){
      free(del);
      Q->len--;
      return x;
+}
+
+void display(Queue Q) {
+    assert(!Q_Empty(Q));
+    struct node* p = Q->first;
+    printf("%d\n", *(int*)p->data);
+    while(p->next != NULL) {
+        p = p->next;
+        printf("%d\n", *(int*)p->data);
+    }
 }
