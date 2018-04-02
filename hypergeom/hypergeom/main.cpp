@@ -155,7 +155,7 @@ double hyp_singlefrac(double a, double b, double z, double tol, int* error) {
             break;
         
     }
-    if( j == 499) {
+    if( j == 500) {
         *error = NO_CONVERGENCE;
     }
     
@@ -166,7 +166,7 @@ double hyp_singlefrac(double a, double b, double z, double tol, int* error) {
 double hyp_rec_olver0p(double a, double b, int k, double z, double tol, int* error) {
     
     double f0 = tgamma(b-a)/tgamma(b)*hyp_taylor_a(a, b, z, tol, error);
-    cout << f0 << endl;
+    
     //Apply recurrences to obtain stopping condition
     double p[1000] {0}, r[1000] {0};
     int j, N;
@@ -180,7 +180,7 @@ double hyp_rec_olver0p(double a, double b, int k, double z, double tol, int* err
         p[j+1] = -(b-a+j)*p[j-1]/z+(b+j+z)*p[j]/z;
         r[j+1] = (b-a+j+1)*r[j]/z;
         maxpj = max(maxpj,abs(p[j-1]));
-        cout << p[j] << " " << p[j+1] << "  " << r[j] << " " << maxpj << " " << endl;
+        //cout << p[j] << " " << p[j+1] << "  " << r[j] << " " << maxpj << " " << endl;
         if (fabs( r[j]/(p[j]*p[j+1])) * maxpj < tol)
             break;
     }
@@ -196,11 +196,11 @@ double hyp_rec_olver0p(double a, double b, int k, double z, double tol, int* err
     f[N-1] = r[N-1]/p[N];
     for( j = N-2; j >= k; --j) {
         f[j] = (r[j]+p[j]*f[j+1])/p[j+1];
-        cout << j << " " << f[j] << endl;
+        //cout << j << " " << f[j] << endl;
     }
     
     //Return solution
-    return (f[k]/tgamma(b-a+k));
+    return f[k]/tgamma(b-a+k);
 }
 
 
@@ -237,6 +237,7 @@ int main()
     ofstream output;
     output.open ("hyp_taylor_a.txt", ios::out | ios::app);
     output << std::setw(26);
+    
     std::vector<double> a(400);
     std::vector<double> b(400);
     std::vector<double> z(400);
@@ -296,8 +297,9 @@ int main()
                 double res5 = hyp_asymtotic_b(i, j, k, tol, &error5);
                 if(error5 != SUCCESS)
                     res5 = -1;
-                output << setprecision(22);
-                output << setw(4) << i << '\t' <<setw(4)<< j << '\t' <<setw(4)<< k << '\t' <<setw(22)<< res1 << '\t' << error1 << '\t' <<setw(22) << res2 << '\t' << error2 << '\t' <<setw(22)<< res3 << '\t' <<error3 << '\t' <<setw(22)<< res4 << '\t' << error4 << '\t' <<setw(22)<< res5 << '\t' << error5 << endl;
+                
+                //output.setf(ios::fixed, ios::floatfield); // set fixed floating format
+                output << setprecision(6) << setw(6) << i << '\t' <<setw(6)<< j << '\t' <<setw(6)<< k << '\t' << setprecision(16) << setw(30)<< res1 << '\t' << error1 << '\t' << setw(30)<<res2 << '\t' << error2 << '\t' <<setw(30)<< res3 << '\t' <<error3 << '\t' << setw(30) << res4 << '\t' << error4 << '\t' << setw(30) << res5 << '\t' << error5 << endl;
             }
     output.close();
     return 0;
