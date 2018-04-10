@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1523367637 source:c:\source-files\cpp9\main.c
+	<stdio.h>
+	<stdlib.h>
+	"tree.h"
+
+1523364710 c:\source-files\cpp9\tree.h
+
