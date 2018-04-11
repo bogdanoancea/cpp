@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "tree.h"
@@ -46,10 +47,26 @@ int main()
     x[0] = 90;
     x[1] = 50;
     x[2] = 150;
+    x[3] = 20;
+    x[4] = 75;
+    x[5] = 95;
+    x[6] = 175;
+    x[7] = 5;
+    x[8] = 25;
+    x[9] = 66;
+    x[10] = 80;
 
     BTree root = insert(BTree_New(), &x[0]);
     insert(root, &x[1]);
     insert(root, &x[2]);
+    insert(root, &x[3]);
+    insert(root, &x[4]);
+    insert(root, &x[5]);
+    insert(root, &x[6]);
+    insert(root, &x[7]);
+    insert(root, &x[8]);
+    insert(root, &x[9]);
+    insert(root, &x[10]);
 
     PreOrder(root, Visit);
     return 0;
