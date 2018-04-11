@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tree.h"
+#include "queue.h"
 
 BTree insert (BTree root, int* key) {
     BTree node1, node2, node3;
@@ -38,6 +39,22 @@ BTree insert (BTree root, int* key) {
     return res;
 }
 
+
+void BreadthFirst(BTree root, void (*Visit)()){
+    Queue q = Q_New();
+    BTree p;
+    Enq(q, root);
+    while(!Q_Empty(q)){
+        p = Deq(q);
+        Visit(BTree_GetKey(p));
+        if(BTree_GetLT(p))
+            Enq(q, BTree_GetLT(p));
+        if(BTree_GetRT(p))
+            Enq(q, BTree_GetRT(p));
+    }
+}
+
+
 int main()
 {
     printf("Hello binary tree!\n");
@@ -72,5 +89,7 @@ int main()
     PostOrder(root, Visit);
     printf("\n Inordine :\n");
     InOrder(root, Visit);
+    printf("\n In latime :\n");
+    BreadthFirst(root, Visit);
     return 0;
 }
