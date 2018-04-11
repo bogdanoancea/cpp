@@ -38,8 +38,6 @@ BTree insert (BTree root, int* key) {
     return res;
 }
 
-
-
 int main()
 {
     printf("Hello binary tree!\n");
@@ -68,6 +66,11 @@ int main()
     insert(root, &x[9]);
     insert(root, &x[10]);
 
+    printf("\n Preordine :\n");
     PreOrder(root, Visit);
+    printf("\n Postordine :\n");
+    PostOrder(root, Visit);
+    printf("\n Inordine :\n");
+    InOrder(root, Visit);
     return 0;
 }
